@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>一起收拾新冠病毒</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="./css/game.css">
+		<script type="text/javascript" src='./js/jquery-3.2.1.min.js'></script>
+		<script type="text/javascript" src='./js/jquery-ui.js'></script>
+	</head>
+	<body>
+		<div class = 'upper' fbx = "0">
+			<div class = 'upper-name'></div>
+			<div class = 'upper-timer endFadeOut'>00:20:00</div>
+			<div class = 'upper-count endFadeOut' hidden>0</div>
+			<div class = 'upper-hit endFadeOut' hidden></div>
+			<div class = 'wash-tip endFadeOut' hidden>
+				<div class = 'wash-circle'>
+					<svg height="100%" width="100%">
+					  	<circle cx="50%" cy="50%" r="calc(50% - 1px)" stroke="#7283FD" stroke-width="2px" fill="transparent"/>
+					</svg>
+				</div>
+			</div>
+			<div class = 'upper-start-count'>3</div>
+			<div class = 'upper-tip'></div>
+			<div class = 'upper-mask'>
+				<img class = 'upper-loading-title' src = './img/loading-title.svg'>
+				<img class = 'upper-loading-icon' src = './img/loading-icon.svg'>
+				<div class = 'cover'>
+					<div class = 'cover-icon'></div>
+					<div class = 'cover-title'></div>
+					<div class = 'cover-image'></div>
+					<div class = 'cover-start-btn'></div>
+				</div>
+			</div>
+		</div>
+		<script type="module" src = './js/game.js?v=2'></script>
+            
+	</body>
+	<script type="text/javascript">
+		function enterH5(){
+			MtaH5.clickStat('enterH5',{'adtag':""});
+		}
+	</script>
+<!-- 	<script>
+	$(function(){
+	
+	    function wx_share(){
+	        wx.onMenuShareTimeline({
+	            title: '一起收拾新冠病毒',
+	            link: '', //公眾平台的js安全域名
+	            imgUrl: '',//請使用絕對路徑
+	            success: function () {MtaH5.clickShare('wechat_moments');},cancel: function () {}
+	        });
+	        wx.onMenuShareAppMessage({
+	            title: '一起收拾新冠病毒', 
+	            desc: '来一记暴击',
+	            link: '', 
+	            imgUrl: '',
+	            success: function () {MtaH5.clickShare('wechat_friend');},cancel: function () {}
+	        });
+	    }
+	
+	
+	    $.ajax({
+			url: '/api/access/json?cmd=SignForJsSDK',
+	    	type: "post",//传递方法
+	        data: JSON.stringify({
+	        	"header": {
+	        		"version":2,
+	        		"flag":0
+	        	},
+	        	"body": {
+	        		"seq":1,
+	        		"cmd":"SignForJsSDK",
+	        		"token":"",
+	        		"client": {
+	        			"version":"1.0.0",
+	        			"platform":1,
+	        			"os":1,
+	        			"env":"",
+	        			"isTourist":[48],
+	        			"adtag":"",
+	        			"vnk":"",
+	        			"product":0
+	        		},
+	        		"payload": {
+	        			"url":location.href.split('#')[0],
+	        			"appid":""
+	        		}
+	        	}
+	        }),
+	        dataType: "json",
+	        headers: {
+			    'content-type': 'application/json', // 默认值
+			    Authorization: 'Bearer', // 不能是'Bearer ',ios9设置header有bug
+			},
+			success:function(result){
+			   let body = result&&result.body;
+			    if (body&&body.retcode == 0 && body.bizcode == 0) {
+			    	let payload = body.payload;
+					wx.config({
+						debug: false,
+						appId: payload.appid,
+						timestamp: payload.timestamp,
+						nonceStr: payload.noncestr,
+						signature: payload.signature,
+						jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
+					});
+					wx.ready(function () {
+						wx_share();
+					});
+			    }
+					  		
+			}
+		});
+	});
+	</script>
+	<script>
+		var _mtac = {"performanceMonitor":1,"senseQuery":1};
+	  	(function() {
+	  		var mta = document.createElement("script");
+	  		mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+	  		mta.setAttribute("name", "MTAH5");
+	  		mta.setAttribute("sid", "500711408");
+	  		mta.setAttribute("cid", "500711409");
+	  		var s = document.getElementsByTagName("script")[0];
+	  		s.parentNode.insertBefore(mta, s);
+	  	})();
+	</script> -->
+</html>
