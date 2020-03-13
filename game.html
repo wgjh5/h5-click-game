@@ -41,7 +41,128 @@
 		function enterH5(){
 			MtaH5.clickStat('enterH5',{'adtag':""});
 		}
+			function clickStat(name){
+						MtaH5.clickStat(name);
+					}
+
+
+			var bgm0 = document.getElementById('bgm0');
+			var bgm1 = document.getElementById('bgm1');
+			var ahahah = document.getElementById('ahahah');
+
+			var isPlay = 0;
+			var bgm1IsFirst = true;
+
+			document.addEventListener("WeixinJSBridgeReady", function () {
+		    	bgm0.load();
+		    	bgm1.load();
+		    	ahahah.load();
+		  	}, false);
+
+			bgm0.addEventListener("timeupdate", function () { //播放时间改变   这个会一直打印
+       			if (bgm0.duration - bgm0.currentTime < 3 && isPlay == 0) { 
+       				window.setTimeout(function(){
+       					if (bgm1IsFirst){
+	       					window.setTimeout(function(){ bgm1.play(); }, 100);
+	       					bgm1IsFirst = false;
+       					} else 
+							bgm1.play(); 
+       				}, (bgm0.duration - bgm0.currentTime - 1.44) * 1000);
+       				isPlay = 1; 
+       			}
+    		});
+
+			bgm1.addEventListener("timeupdate", function () { //播放时间改变   这个会一直打印
+       			if (bgm1.duration - bgm1.currentTime < 3 && isPlay == 1) { 
+       				window.setTimeout(function(){
+       					bgm0.play(); 
+       				}, (bgm1.duration - bgm1.currentTime - 1.44) * 1000);
+       				isPlay = 0; 
+       			}
+    		});
+
+    		function hitAudio(count){
+    			document.getElementById('hit'+count % 5).volume = 0.3;
+				document.getElementById('hit'+count % 5).play();
+    		}
+
+    		function ahahahPlay(){
+    			ahahah.play();
+    		}
+
+    		function loadAudio(){		
+				bgm0.play();
+				document.getElementById('hit0').load();
+				document.getElementById('hit1').load();
+				document.getElementById('hit2').load();
+				document.getElementById('hit3').load();
+				document.getElementById('hit4').load();
+				ahahah.load();
+    		}
+
+		  	var tid, vid;
+
+		  	var endingDesArray = [
+			  	'用收拾前任的力气',
+			  	'用上网抢菜的手速',
+			  	'用天天刷碗的臂力',
+			  	'用接老板电话的手速',
+			  	'用进阶厨神的巧手',
+			  	'用复工起床的力气',
+			  	'用视频会议前化妆的手速',
+			  	'用在客厅跑马拉松的耐力',
+			  	'用一手办公一手带娃的技能',
+			  	'用疫情不退誓不聚会的决心',
+			  	'用宅家刷剧的定力',
+			  	'用下单口罩的手速',
+			  	'用陪孩子上网课的毅力',
+			  	'用在家憋疯的洪荒之力'
+		  	];
+
+		  	var isStart = false;
+
+			function reset(){
+				if (!isStart){
+					isStart = true;
+					window.setTimeout(function(){ enterH5(); }, 500);
+				}
+				$('.ending').hide();
+				tid = Math.floor(Math.random() * 14);
+				vid = Math.floor(Math.random() * 14);
+				$('.ending-tip').css('background-image','url(https://baike-med-1256891581.file.myqcloud.com/yidian/production/operation/draw_virus/ossweb-img/ending-tip-'+tid+'.svg?v=1)');
+				$('.ending-virus').css('background-image','url(https://baike-med-1256891581.file.myqcloud.com/yidian/production/operation/draw_virus/ossweb-img/ending-virus-'+vid+'.png)');
+				$('.ending-box').attr('vid',vid);
+				$('.ending-des-random').text(endingDesArray[tid]);
+				let iframe = "<iframe src = 'game.html?v=5'></iframe>";
+				$('#viewer').html(iframe);
+			}
+
+			function clickStat(name){
+				MtaH5.clickStat(name);
+			}
+
+			reset();
+
+			function showEnding(){
+				MtaH5.clickStat('showEnding');
+				$('.ending').fadeIn(1000);
+			}
+
+			function hitsCount(my, all){
+				MtaH5.clickStat('gameFinish', {'count':my});
+				$('.ending-my-count').text(my);
+				$('.ending-all-count').text(all);
+				$.ajax({
+					url:'screenshot.php?tid='+tid+'&vid='+vid+'&my='+my+'&all='+all+'&name='+encodeURI($('.ending-name').text()),
+					type:'get',
+					success:function(res){
+						$('.share-img').attr('src',res);
+					}
+				});
+			}
 	</script>
+	
+	
 <!-- 	<script>
 	$(function(){
 	
