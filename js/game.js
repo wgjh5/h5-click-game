@@ -56,9 +56,9 @@
 			
 			THREE.ImageUtils.crossOrigin = '';
 
-			var cTexture = THREE.ImageUtils.loadTexture('../game/img/guan3.jpg');
-			var sTexture = THREE.ImageUtils.loadTexture('../game/img/sphere3.jpg');
-			var hTexture = THREE.ImageUtils.loadTexture('../game/img/hand1.jpg');
+			var cTexture = THREE.ImageUtils.loadTexture('https://wgjh5.github.io/h5-click-game/img/guan3.jpg');
+			var sTexture = THREE.ImageUtils.loadTexture('https://wgjh5.github.io/h5-click-game/img/sphere3.jpg');
+			var hTexture = THREE.ImageUtils.loadTexture('https://wgjh5.github.io/h5-click-game/img/hand1.jpg');
 
 			document.body.addEventListener('touchmove', function (e) {
 			  	e.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果)
@@ -98,7 +98,7 @@
 
 
 
-				loader.load( '../game/img/nCoV_Model_0216B.fbx', function ( object ) {
+				loader.load( 'https://wgjh5.github.io/h5-click-game/img/nCoV_Model_0216B.fbx', function ( object ) {
 					objects = object;
 					object.scale.set(0.45, 0.45, 0.45);
 					let tweezer = objects.children[0];
@@ -167,7 +167,7 @@
 					
 					ggg0.add(group0);
 					ggg1.add(group1);
-					loader.load( '../game/img/Sphere_0217.fbx', function ( object ) {
+					loader.load( 'https://wgjh5.github.io/h5-click-game/img/Sphere_0217.fbx', function ( object ) {
 						let material0 = new THREE.MeshStandardMaterial( {
 							metalness: beta,
 							roughness: alpha,
@@ -266,7 +266,7 @@
 						}
 					});
 
-					loader.load( '../game/img/Sphere_split100.fbx', function ( object ) {
+					loader.load( 'https://wgjh5.github.io/h5-click-game/img/Sphere_split100.fbx', function ( object ) {
 						object = object.children[1];
 						object.scale.set(0.01, 0.01, 0.01);
 						splits = object;
@@ -284,7 +284,7 @@
 						scene.add(object);
 						object.visible = false;
 					});
-					loader.load( '../game/img/hand.fbx', function ( object ) {
+					loader.load( 'https://wgjh5.github.io/h5-click-game/img/hand.fbx', function ( object ) {
 						hand = object;
 						let material = new THREE.MeshStandardMaterial( {
 							metalness: beta,
